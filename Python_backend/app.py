@@ -81,4 +81,16 @@ def getSum():
     print(result)
     return str(result)
 
+@app.route('/accumulate')
+def accumulate():
+    maxnum = request.args.get("Max", 5)
+    maxnum = int(maxnum)
+    result = 0
+    for n in range(1,maxnum+1):
+        result += n
+    return render_template('/result.html', data = result)
+    
+    #"累加結果為: " + str(result)
+    
+
 app.run(port = 3000) #啟動網站伺服器 , 可透過 port 參數指定埠號
