@@ -1,8 +1,9 @@
 from os import name
-from flask import Flask #引入Flask 
+from flask import Flask, sessions #引入Flask 
 from flask import request #引入request 物件
 from flask import redirect #引入redirect 函式
 from flask import render_template #引入render_temple 函式
+from flask import session #引入 session 工具
 import json #引入json模組
 #建立Application物件......可以額外建立靜態檔案的路徑
 app = Flask(
@@ -11,6 +12,8 @@ app = Flask(
     static_url_path= "/abc"   #靜態檔案對應的網址路徑
 )
 #所有在 static 資料夾底下的檔案, 都對應道網址路徑。/static/檔案名稱
+
+app.secret_key = "This is a secret."  #設定 session 密鑰
 
 @app.route('/page2')
 def templates_index2():
@@ -101,6 +104,17 @@ def accumulate2():
     for n in range(1,maxnum+1):
         result += n
     return render_template('/result.html', data = result)
-    
+
+
+@app.route('/Hello')
+def Hello():
+    session_name = request.args.get('name', "")
+    session['user_name'] = session_name #session[欄位名稱] = 資料
+    return "Hello," + session_name
+
+@app.route('/talk')
+def talk():
+    name = session['user_name']        #抓取存放在session的資料
+    return "嗨~ " + name + " 你怎麼在這!"
 
 app.run(port = 3000) #啟動網站伺服器 , 可透過 port 參數指定埠號
