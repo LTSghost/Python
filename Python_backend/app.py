@@ -81,9 +81,9 @@ def getSum():
     print(result)
     return str(result)
 
-@app.route('/accumulate')
+@app.route('/accumulate', methods = ['GET'])
 def accumulate():
-    maxnum = request.args.get("Max", 5)
+    maxnum = request.args.get("Max", 5) #接收 GET 方法的 Query String
     maxnum = int(maxnum)
     result = 0
     for n in range(1,maxnum+1):
@@ -91,6 +91,16 @@ def accumulate():
     return render_template('/result.html', data = result)
     
     #"累加結果為: " + str(result)
+
+# 使用 POST 方法 處理路徑 /accumulate2 的對應函式
+@app.route('/accumulate2', methods=['POST'])  
+def accumulate2():
+    maxnum = request.form["Max2"]   #接收 POST 方法的 Query String
+    maxnum = int(maxnum)
+    result = 0
+    for n in range(1,maxnum+1):
+        result += n
+    return render_template('/result.html', data = result)
     
 
 app.run(port = 3000) #啟動網站伺服器 , 可透過 port 參數指定埠號
