@@ -1,6 +1,6 @@
 #pip install Flask  安裝 Flask 套件
 from os import name
-from flask import Flask, sessions #引入Flask 
+from flask import Flask #引入Flask 
 from flask import request #引入request 物件
 from flask import redirect #引入redirect 函式
 from flask import render_template #引入render_temple 函式
