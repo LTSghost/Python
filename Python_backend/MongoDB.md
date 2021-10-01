@@ -16,15 +16,32 @@ MongoDB.com
 
 
 ``` python
+
 collection.insert_one({})
 
 collection.insert_many([{,}])
 
+collection.delete_one({})
+
+collection.delete_many({})
+
 collection.find_one(Objected()) # must from bson.objectid import ObjectId
 
-collection.find()              # must all data have common key
+find_all = collection.find()          # must all data have common 'key'
 for doc in find_all:
-	print(doc[''])
+	print(doc['key'])
+
+collection.find_one({  # compound condition
+    '$and/or':[
+        {},{}
+    ]
+})
+
+find_condition = collection.find({},sort = [
+    ('key',pymongo.ASCENDING/DESCENDING)
+])
+for doc in find_condition:
+    print(doc)
 
 collection.update_one({},{"$set":{}})
 
@@ -36,7 +53,8 @@ collection.update_one({},{"$inc":{}})
 
 collection.update_one({},{"$mul":{}})
 
+print("Actual deleted count",var.deleted_count)
 print("Meet the criteria count",var.matched_count)
-print("Actual modification count",var.modified_count)
+print("Actual modified count",var.modified_count)
 
 ```
