@@ -1,0 +1,26 @@
+MongoDB.com 
+
+
+
+collection.insert_one({})
+
+collection.insert_many([{,}])
+
+collection.find_one(Objected())
+
+collection.find()              # must all data have common key
+for doc in find_all:
+	print(doc[''])
+
+collection.update_one({},{"$set":{}})
+
+collection.update_many({},{"$set":{}})
+
+collection.update_one({},{"$unset":{}})
+
+collection.update_one({},{"$inc":{}})
+
+collection.update_one({},{"$mul":{}})
+
+print("Meet the criteria count",Update_more.matched_count)
+print("Actual modification count",Update_more.modified_count)
